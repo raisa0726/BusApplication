@@ -5,12 +5,14 @@
         android:id="@+id/navigation_introduce"
         android:enabled="true"
         android:icon="@drawable/ic_dashboard_black_24dp"
+        android:onClick="showIntroduce"
         android:title="@string/title_introduce" />
 
     <item
         android:id="@+id/navigation_maps"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_map_24"
+        android:onClick="showMap"
         android:title="@string/title_map" />
 
     <item
@@ -23,12 +25,14 @@
         android:id="@+id/navigation_ride"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_ride_24"
+        android:onClick="scanQR"
         android:title="@string/title_ride" />
 
     <item
         android:id="@+id/navigation_profile"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_profile_24"
+        android:onClick="showProfile"
         android:title="@string/title_profile" />
 
 </menu>

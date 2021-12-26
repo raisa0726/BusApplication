@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph">
+
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.example.busapplication.ui.ride.ScanFragment"
+        android:label="ScanFragment" >
+        <action
+            android:id="@+id/action_scanFragment_to_rideOnFragment"
+            app:destination="@id/rideOnFragment" />
+        <action
+            android:id="@+id/action_scanFragment_to_rideOffFragment2"
+            app:destination="@id/rideOffFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/rideOnFragment"
+        android:name="com.example.busapplication.ui.ride.RideOnFragment"
+        android:label="RideOnFragment" >
+        <action
+            android:id="@+id/action_rideOnFragment_to_rideWaitFragment"
+            app:destination="@id/rideWaitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rideOffFragment2"
+        android:name="com.example.busapplication.ui.ride.RideOffFragment"
+        android:label="RideOffFragment" />
+    <fragment
+        android:id="@+id/rideWaitFragment"
+        android:name="com.example.busapplication.ui.ride.RideWaitFragment"
+        android:label="RideWaitFragment" >
+        <action
+            android:id="@+id/action_rideWaitFragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+    </fragment>
+</navigation>

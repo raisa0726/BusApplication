@@ -21,6 +21,11 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    public boolean goMain(View view){
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+        return true;
+    }
     public boolean showMap(View view) {
         // Inflate the menu; this adds items to the action bar if it is present.
         Intent intent = new Intent(this, MapsActivity.class);

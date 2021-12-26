@@ -2,51 +2,45 @@ package com.example.busapplication.ui.ride;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.fragment.app.FragmentTransaction;
+
 import com.example.busapplication.R;
-import com.example.busapplication.ui.home.HomeActivity;
 import com.google.zxing.client.android.Intents;
 import com.journeyapps.barcodescanner.ScanContract;
 import com.journeyapps.barcodescanner.ScanOptions;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class RideActivity extends AppCompatActivity {
-    public int cnt;
-    public int adultNum;
-    public int childNum;
-    Button button;
-    ProgressBar progressBar;
-    // todo: arraylist -> 一時キャッシュで保存
-    ArrayList<String> resultContents = new ArrayList<>();
-    @SuppressLint("SetTextI18n")
+    String[] qr;
+    String[] qr1;
+    int adultNum;
+    int childNum;
     private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
             result -> {
-                Log.d("RideActivity", "camera");
                 if(result.getContents() == null) {
-                    cnt-=2;
                     Intent originalIntent = result.getOriginalIntent();
                     if (originalIntent == null) {
                         Log.d("RideActivity", "Cancelled scan");
-                        Toast.makeText(RideActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(RideActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
                     } else if(originalIntent.hasExtra(Intents.Scan.MISSING_CAMERA_PERMISSION)) {
                         Log.d("RideActivity", "Cancelled scan due to missing camera permission");
-                        Toast.makeText(RideActivity.this, "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(RideActivity.this, "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Log.d("RideActivity", "Scanned");
-                    resultContents.add(result.getContents());
+                    //Toast.makeText(RideActivity.this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                    getInfo(result.getContents());
+
                 }
             });
 
@@ -56,69 +50,58 @@ public class RideActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ride);
-        Intent intent = getIntent();
-        cnt = intent.getIntExtra("cnt",0);
-        if(cnt>=2) {
-            String qr = intent.getStringExtra("QR");
-            resultContents.add(qr);
-            adultNum = intent.getIntExtra("adultNum",0);
-            childNum = intent.getIntExtra("childNum",0);
-        }
-        progressBar = findViewById(R.id.progressBar);
-        // 水平プログレスバーの最大値を設定します
-        progressBar.setMax(4);
-        progressBar.setProgress(cnt);
-        button = findViewById(R.id.button_ride);
-        button.setOnClickListener(onClickListener);
+        ScanOptions options = new ScanOptions().setCaptureActivity(CameraActivity.class);
+        barcodeLauncher.launch(options);
+        Intent args = getIntent();
+        adultNum = args.getIntExtra("adultNum",0);
+        childNum = args.getIntExtra("childNum",0);
+        qr1 = args.getStringArrayExtra("QR1");
     }
-    private final View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Log.d("onclickCnt", String.valueOf(cnt));
-            switch (cnt){
-                case 1:
-                    // scan -> ride on
-                    FragmentManager fragmentManager1 = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction1 = fragmentManager1.beginTransaction();
-                    RideOnFragment onFragment = new RideOnFragment();
-                    Bundle bundle1= new Bundle();
-                    bundle1.putString("QR", resultContents.get(0));
-                    bundle1.putInt("cnt",cnt);
-                    onFragment.setArguments(bundle1);
-                    fragmentTransaction1.replace(R.id.ride_container, onFragment).commit();
-                    cnt++;
-                    button.setVisibility(View.INVISIBLE);
-                    // launch ride wait
-                    break;
-                case 0:
-                case 2:
-                    button.setVisibility(View.VISIBLE);
-                    cnt++;
-                    ScanOptions options = new ScanOptions().setCaptureActivity(CameraActivity.class);
-                    barcodeLauncher.launch(options);
-                    break;
-                case 3:
-                    // scan -> ride off
-                    FragmentManager fragmentManager5 = getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction5 = fragmentManager5.beginTransaction();
-                    RideOffFragment offFragment = new RideOffFragment();
-                    Bundle bundle3 = new Bundle();
-                    bundle3.putString("QR", resultContents.get(0));
-                    bundle3.putInt("adultNum",adultNum);
-                    bundle3.putInt("childNum",childNum);
-                    Log.d("adultNum", String.valueOf(adultNum));
-                    offFragment.setArguments(bundle3);
-                    fragmentTransaction5.replace(R.id.ride_container, offFragment).commit();
-                    button.setVisibility(View.INVISIBLE);
-                    Log.d("case 3","ride off call!");
-                    cnt++;
-                    break;
-                case 4:
-                    Intent intent = new Intent(RideActivity.this, HomeActivity.class);
-                    startActivity(intent);
-            }
-            progressBar.setProgress(cnt);
+    public void scaned(View v) {
+        if(qr[0].equals("0")){
+            // Do something in response to button click
+            Intent intent1 = new Intent(this, RideOnActivity.class);
+            intent1.putExtra("QR1", qr);
+            startActivity(intent1);
+        }else if (qr[0].equals("1")){
+            Intent intent2 = new Intent(this, RideOffActivity.class);
+            intent2.putExtra("QR1",qr1);
+            intent2.putExtra("adultNum",adultNum);
+            intent2.putExtra("childNum",childNum);
+            intent2.putExtra("QR2", qr);
+            startActivity(intent2);
         }
-    };
+    }
+    @SuppressLint("SetTextI18n")
+    private void getInfo(String info){
+        qr = info.split(",", 0);
+        String[] bus = getResources().getStringArray(R.array.Array_bus);
+        if (Arrays.asList(bus).contains(qr[1])) {
+
+            setContentView(R.layout.activity_scaned);
+            TextView text = findViewById(R.id.text_scaned);
+            TextView error = findViewById(R.id.text_error_scan);
+
+            if(qr[0].equals("0")) {
+                // 乗車の場合
+                text.setText(qr[1] + "に乗車しました。\n" + "乗車したバス停：" + qr[2]);
+
+            }else if(qr[0].equals("1")){
+                // 降車の場合
+                if (qr1.length == 0){
+                    error.setText("乗車処理がされていません。運転手まで申し出てください。");
+                }else if(!qr[1].equals(qr1[1])){
+                    error.setText("乗車したバスと降車したバスが違います。");
+                }else {
+                    text.setText(qr[1] + "に乗車していました。\n" + "降車したバス停：" + qr[2] );
+                }
+
+            }
+        } else {
+            Toast.makeText(this ,"無効なQRコードです。やり直してください。", Toast.LENGTH_LONG).show();
+            ScanOptions options = new ScanOptions().setCaptureActivity(CameraActivity.class);
+            barcodeLauncher.launch(options);
+        }
+
+    }
 }

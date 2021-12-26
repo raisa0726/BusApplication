@@ -22,6 +22,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusApplication">
         <activity
+            android:name=".ui.ride.RideMoveActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ride.RideWaitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ride.RideOffActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ride.RideOnActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ride.RideActivity"
             android:exported="false" />
         <activity
@@ -50,6 +62,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".ui.map.MapsActivity"

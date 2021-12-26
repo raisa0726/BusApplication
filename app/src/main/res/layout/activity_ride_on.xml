@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ride_on_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:onClick="RideOn"
+    tools:context=".ui.ride.RideOnActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="@string/text_enter_ride"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +24,9 @@
         android:id="@+id/text_ride_bus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -40,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_ride_bus">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/label_adult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -57,12 +61,12 @@
             android:ems="4"
             android:gravity="center"
             android:inputType="numberSigned"
-            android:labelFor="@id/textView2"
+            android:labelFor="@id/label_adult"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             tools:text="1" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/adult_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_person" />
@@ -82,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/text_ride_bus">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/label_child"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -98,12 +102,12 @@
             android:ems="4"
             android:gravity="center"
             android:inputType="numberSigned"
-            android:labelFor="@id/textView3"
+            android:labelFor="@id/label_child"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             tools:text="0" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/child_person"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/text_person" />
@@ -114,8 +118,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:onClick="RideOn"
         android:text="@string/button_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
