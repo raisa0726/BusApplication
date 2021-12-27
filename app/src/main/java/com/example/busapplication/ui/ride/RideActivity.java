@@ -35,15 +35,14 @@ public class RideActivity extends AppCompatActivity {
                         Log.d("RideActivity", "Cancelled scan due to missing camera permission");
                         //Toast.makeText(RideActivity.this, "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
                     }
-                    int n = qr.length;
-                    if(n==0){
+                    if(qr1 == null){
                         Intent home = new Intent(this, HomeActivity.class);
                         startActivity(home);
                     }else{
                         Intent wait = new Intent(this, RideWaitActivity.class);
                         wait.putExtra("adultNum",adultNum);
                         wait.putExtra("childNum",childNum);
-                        wait.putExtra("QR1",qr);
+                        wait.putExtra("QR1",qr1);
                         startActivity(wait);
                     }
                 } else {
