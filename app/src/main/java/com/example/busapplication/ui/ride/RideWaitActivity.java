@@ -28,9 +28,10 @@ public class RideWaitActivity extends AppCompatActivity {
         qr1 = args.getStringArrayExtra("QR1");
 
         TextView mTextView1 = findViewById(R.id.text_dialog1);
-        mTextView1.setText("大人：" + adultNum + "人\n" + "子供：" + childNum + "人");
+        mTextView1.setText(qr1[1] + "に乗車しています");
         TextView mTextView2 = findViewById(R.id.text_dialog2);
-        mTextView2.setText(qr1[1] + "に乗車しています");
+        mTextView2.setText("大人：" + adultNum + "人\n" + "子供：" + childNum + "人");
+
         Log.d("RideWait", "ride wait");
     }
 
@@ -40,5 +41,9 @@ public class RideWaitActivity extends AppCompatActivity {
         intent.putExtra("adultNum",adultNum);
         intent.putExtra("childNum",childNum);
         startActivity(intent);
+    }
+    @Override
+    public void onBackPressed() {
+
     }
 }

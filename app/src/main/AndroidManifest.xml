@@ -22,33 +22,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusApplication">
         <activity
-            android:name=".ui.ride.RideMoveActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.ride.RideWaitActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.ride.RideOffActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.ride.RideOnActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.ride.RideActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.home.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/title_main" />
         <activity
             android:name=".ui.introduce.IntroduceActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/title_introduce" />
         <activity
             android:name=".ui.ride.CameraActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.profile.ProfileActivity"
+            android:screenOrientation="portrait"
             android:exported="false"
             android:label="@string/title_profile" />
         <!--

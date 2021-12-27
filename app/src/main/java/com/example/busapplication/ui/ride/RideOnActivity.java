@@ -48,4 +48,8 @@ public class RideOnActivity extends AppCompatActivity {
             intent.putExtra("QR1",qr1);
             startActivity(intent);
         }
+    @Override
+    public void onBackPressed() {
+
+    }
 }

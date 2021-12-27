@@ -35,12 +35,12 @@ public class RideOffActivity extends AppCompatActivity {
         Log.d("RideOff", String.valueOf(childNum));
         //
         sum = getSum(qr1, qr2, adultNum, childNum);
-        TextView mTextView1 = findViewById(R.id.text_ans1);
-        TextView mTextView2 = findViewById(R.id.text_ans2);
-        mTextView1.setText("不正な操作です。運転手まで申し出てください。\n " +
-                "乗車したバス：" + qr1[1] +"乗車したバス停：" + qr1[2] + "\n"+
-                "降車したバス" + qr2[1] + "降車したバス停：" + qr2[2]);
-        mTextView2.setText("大人: " + adultNum + "人　子供: " + childNum + "人\n" + "合計:" + sum + "円の支払いです");
+        TextView rideOn = findViewById(R.id.text_ride_on_ans);
+        TextView rideOff = findViewById(R.id.text_ride_off_ans);
+        TextView mTextView = findViewById(R.id.text_ans);
+        rideOn.setText("乗車したバス：" + qr1[1] + '\n' +"乗車したバス停：" + qr1[2]);
+        rideOff.setText("降車したバス：" + qr2[1] + '\n' +"降車したバス停：" + qr2[2]);
+        mTextView.setText("大人: " + adultNum + "人　子供: " + childNum + "人\n" + "合計:" + sum + "円の支払いです");
         Log.d("RideActivity", "ride off");
     }
 
@@ -76,6 +76,10 @@ public class RideOffActivity extends AppCompatActivity {
         intent.putExtra("sum",sum);
         startActivity(intent);
         // fragment
+
+    }
+    @Override
+    public void onBackPressed() {
 
     }
 }

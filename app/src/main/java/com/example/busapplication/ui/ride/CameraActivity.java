@@ -3,10 +3,12 @@ package com.example.busapplication.ui.ride;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.example.busapplication.R;
+import com.example.busapplication.ui.home.HomeActivity;
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
@@ -21,7 +23,7 @@ public class CameraActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scan);
 
         Toolbar toolbar = findViewById(R.id.my_awesome_toolbar);
-        toolbar.setTitle("Scan Barcode");
+        toolbar.setTitle("QRコードをスキャン");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         super.onCreate(savedInstanceState);
@@ -67,5 +69,4 @@ public class CameraActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return barcodeScannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
     }
-
 }
