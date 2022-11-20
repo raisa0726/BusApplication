@@ -1,0 +1,46 @@
+{
+  "introduce": [
+    {
+      "id": 1,
+      "name": "北鉄バス",
+      "img": "picture_hokutetsu",
+      "url": "http://www.hokutetsu.co.jp/route-bus",
+      "detail": "北鉄バスは、赤と白の車体が特徴的な路線バスです。\n金沢市内のあらゆる場所まで路線が整備されているため、観光客の方はお気をつけて利用してください。"
+    },
+    {
+      "id": 2,
+      "name": "まちバス",
+      "img": "picture_machi",
+      "url": "https://www.machibus.com/",
+      "detail": "hogehoge"
+    },
+    {
+      "id": 3,
+      "name": "城下まち金沢周遊バス",
+      "img": "picture_jyoukamachi",
+      "url": "http://www.hokutetsu.co.jp/tourism-bus/castle-town",
+      "detail": "hogehoge"
+    },
+    {
+      "id": 3,
+      "name": "ふらっとバス",
+      "img": "picture_huratto",
+      "url": "https://www4.city.kanazawa.lg.jp/soshikikarasagasu/arukerukankyosuishinka/gyomuannai/3/2/8042.html",
+      "detail": "hogehoge"
+    },
+    {
+      "id": 4,
+      "name": "金沢ライトアップバス",
+      "img": "picture_light_up",
+      "url": "http://www.hokutetsu.co.jp/tourism-bus/lightup",
+      "detail": "hogehoge"
+    },
+    {
+      "id": 5,
+      "name": "定期観光バス　金沢めぐり",
+      "img": "picture_kanazawa_meguri",
+      "url": "http://www.hokutetsu.co.jp/tourism-bus/oneday_bus",
+      "detail": "hogehoge"
+    }
+  ]
+}

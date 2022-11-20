@@ -2,18 +2,16 @@ plugins {
     id 'com.android.application'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
-
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "com.example.busapplication"
-        minSdk 19
-        targetSdk 31
+        minSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        minSdkVersion 21
     }
 
     buildTypes {
@@ -29,30 +27,49 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.example.busapplication'
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets', 'src/main/assets/data'
+            }
+        }
+    }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.0'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //androidX
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation "androidx.activity:activity:1.6.1"
+    implementation 'androidx.fragment:fragment:1.5.4'
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.annotation:annotation:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
-    implementation 'androidx.navigation:navigation-fragment:2.3.5'
-    implementation 'androidx.navigation:navigation-ui:2.3.5'
-    implementation 'androidx.preference:preference:1.1.1'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    // add
-    implementation 'androidx.fragment:fragment:1.4.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.1.2"
-    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.0-rc02"
+    implementation 'androidx.annotation:annotation:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.lifecycle:lifecycle-livedata:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.5.1'
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
+    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha04"
+    implementation "com.google.android.material:material:1.7.0"
+    // json読み込み
+    implementation 'com.google.code.gson:gson:2.8.6'
     // QR
     implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
     // map
-    implementation 'com.google.android.gms:play-services-maps:18.0.1'
-    // introduce cardview
-    implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
+    implementation 'com.google.android.libraries.places:places:2.7.0'
+    // test
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:core:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }

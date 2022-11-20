@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.example.busapplication.R;
-import com.example.busapplication.ui.home.HomeActivity;
 import com.journeyapps.barcodescanner.CaptureManager;
 import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 
@@ -22,11 +21,13 @@ public class CameraActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_scan);
 
-        Toolbar toolbar = findViewById(R.id.my_awesome_toolbar);
+        Toolbar toolbar = findViewById(R.id.my_ride_toolbar);
         toolbar.setTitle("QRコードをスキャン");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         super.onCreate(savedInstanceState);
+
+        Intent intent = getIntent();
 
         barcodeScannerView = findViewById(R.id.zxing_barcode_scanner);
 

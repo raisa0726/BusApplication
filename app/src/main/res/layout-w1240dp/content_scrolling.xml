@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ui.introduce.IntroduceActivity"
-    tools:showIn="@layout/activity_introduce">
+    tools:context=".ui.bus.BusActivity"
+    tools:showIn="@layout/activity_bus">
 
     <TextView
         android:layout_width="wrap_content"
